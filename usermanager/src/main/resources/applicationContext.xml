@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <context:property-placeholder location="classpath:jdbc.properties"/>
+  <context:component-scan base-package="com.wt"></context:component-scan>
+            <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<!--           配置 连接数据库参数  c3p0 连接池  -->
+            <property name="driverClass" value="${jdbc.driverClass}"></property>
+            <property name="jdbcUrl" value="${jdbc.url}"></property>
+            <property name="user" value="${jdbc.username}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+       </bean>
+      <!-- 连接池 给 sessionFactory  xml org.springframework.orm.hibernate3.LocalSessionFactoryBean  注解  -->
+       <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+          <property name="dataSource" ref="dataSource"></property>
+          <!--  配置其他hibernate 信息 -->
+          <property name="hibernateProperties">
+             <!-- 配置hibernate 其他信息的
+                 注意: hibernate.show_sql hibernate 不要丢掉!
+              -->
+               <props>
+                  <prop key="hibernate.show_sql">true</prop>
+                  <prop key="hibernate.format_sql">true</prop>
+                  <prop key="hibernate.hbm2ddl.auto">update</prop>
+                  <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+               </props>
+          </property>
+          <!-- 注解开发 扫描 包 -->
+          <property name="packagesToScan">
+            <!-- 实体类所在的包名 -->
+             <list>
+               <value>com.wt.ssh.usermanager.domain</value>
+             </list>
+          </property>
+       </bean>
+		
+		<!-- 事务管理 -->
+		<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+		
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
