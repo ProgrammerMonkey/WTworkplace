@@ -1,0 +1,46 @@
+package com.wt.bos.service.impl;
+
+import java.util.List;
+
+import com.wt.bos.domain.user.User;
+import com.wt.bos.service.UserService;
+
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public void save(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public User findUserById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public User login(String name, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
