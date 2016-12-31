@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <!-- match-table 匹配那些表需要自定义规则 -->
+  <schema-selection  match-table="t_user"  match-catalog="mavenbos"/>
+  <schema-selection  match-table="t_standard"  match-catalog="mavenbos"/>
+  <schema-selection  match-table="bc_.*"  match-catalog="mavenbos"/>
+  <schema-selection  match-table="customers"  match-catalog="mavenbos"/>
+  <schema-selection  match-table="qp_.*"  match-catalog="mavenbos"/>
+  
+  	 <table name="qp_noticebill" catalog="mavenbos" class="com.wt.bos.domain.qp.NoticeBill">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+  	 <table name="qp_workbill" catalog="mavenbos" class="com.wt.bos.domain.qp.WorkBill">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+  	 <table name="qp_workordermanage" catalog="mavenbos" class="com.wt.bos.domain.qp.WorkOrderManage">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+  
+  
+  
+  
+  <!-- 定义具体表 生成实体模型规则  -->
+    <table name="t_user" catalog="mavenbos" class="com.wt.bos.domain.user.User">
+<!-- 		<primary-key> -->
+<!-- 		   uuid 主键 -->
+<!-- 			<generator class=""></generator> -->
+<!-- 		</primary-key> -->
+	</table>
+    <table name="customers" catalog="mavenbos" class="com.wt.mavencrm.domain.Customer">
+<!-- 		<primary-key> -->
+<!-- 		   uuid 主键 -->
+<!-- 			<generator class=""></generator> -->
+<!-- 		</primary-key> -->
+	</table>
+    <table name="t_standard" catalog="mavenbos" class="com.wt.bos.domain.bc.Standard">
+	</table>
+	
+	 <table name="bc_staff" catalog="mavenbos" class="com.wt.bos.domain.bc.Staff">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	  <table name="bc_region" catalog="mavenbos" class="com.wt.bos.domain.bc.Region">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	  <table name="bc_subarea" catalog="mavenbos" class="com.wt.bos.domain.bc.Subarea">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	  <table name="bc_decidedzone" catalog="mavenbos" class="com.wt.bos.domain.bc.DecidedZone">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	
+</hibernate-reverse-engineering>
